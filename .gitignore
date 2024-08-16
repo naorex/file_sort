@@ -1,4 +1,10 @@
+# Windows dev
 Include/
 Lib/
 Scripts/
 pyvenv.cfg
+
+# Linux dev
+bin/
+lib/
+lib64
