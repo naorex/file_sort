@@ -1,7 +1,8 @@
 import os
+from windows_to_linux_path import windows_to_wsl
 
 # 対象のフォルダパスを指定
-folder_path = input('作業するフォルダのパスを入力: ')
+folder_path = windows_to_wsl(input('作業するフォルダのパスを入力: '))
 
 # 変更後のファイル名の接頭辞を指定
 prefix = input('ファイル名の接頭辞を指定(imgなど): ')
