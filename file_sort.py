@@ -2,7 +2,13 @@ import os
 from windows_to_linux_path import windows_to_wsl
 
 # 対象のフォルダパスを指定
-folder_path = windows_to_wsl(input('作業するフォルダのパスを入力: '))
+os_env = input("WSL2 環境ならば 0, Windows ならば 1: ")
+if os_env == "0":
+    folder_path = windows_to_wsl(input('作業するフォルダのパスを入力: '))
+elif os_env == "1":
+    folder_path = input('作業するフォルダのパスを入力: ')
+else:
+    raise ValueError()
 
 # 変更後のファイル名の接頭辞を指定
 prefix = input('ファイル名の接頭辞を指定(imgなど): ')
@@ -15,7 +21,7 @@ start_number = int(input('ファイル名の開始番号を指定(over 1): '))
 
 # フォルダ内のファイル名の一覧を取得して作成時刻順にソート
 file_list = sorted(os.listdir(folder_path), key=lambda x: os.stat(
-    os.path.join(folder_path, x)).st_ctime)
+    os.path.join(folder_path, x)).st_birthtime)
 
 # ========================================================================================================
 # この方法では、os.listdir() 関数でフォルダ内のファイル名の一覧を取得した後、
